@@ -10,6 +10,19 @@ class UsersController < ApplicationController
         render json: @user
     end
 
+    def create
+        @newUser = params["newUser"]
+        # byebug
+        @user = User.new
+
+        @user.username = @newUser['username']
+        @user.displayname = @newUser['displayname']
+        @user.neighborhood = @newUser['neighborhood']
+
+        @user.save
+        render json: @user
+    end
+
     def user_reviews
         @u = User.find(params[:id])
         @r = @u.reviews
