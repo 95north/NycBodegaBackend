@@ -28,6 +28,31 @@ class ReviewsController < ApplicationController
         render json: @review
     end
 
+    def update
+        @editedReview = params["editedReview"]
+
+        @review = Review.find(params[:id])
+
+        @review.user_id = @editedReview["user_id"]
+        @review.bodega_id= @editedReview["bodega_id"]
+        @review.latenight= @editedReview["latenight"]
+        @review.coffeenumber= @editedReview["coffeenumber"]
+        @review.coffeetext= @editedReview["coffeetext"]
+        @review.catnumber= @editedReview["catnumber"]
+        @review.cattext= @editedReview["cattext"]
+        @review.sandwichnumber= @editedReview["sandwichnumber"]
+        @review.sandwichtext= @editedReview["sandwichtext"]
+        @review.hoursnumber= @editedReview["hoursnumber"]
+        @review.hourstext= @editedReview["hourstext"]
+        @review.beernumber= @editedReview["beernumber"]
+        @review.beertext= @editedReview["beertext"]
+        @review.snacknumber= @editedReview["snacknumber"]
+        @review.snacktext= @editedReview["snacktext"]
+
+        @review.save
+        render json: @review
+    end
+
 
     def index
         @reviews = Review.all
@@ -35,46 +60,13 @@ class ReviewsController < ApplicationController
     end
 
     def show
-        @review = Review.find_by(params[:id])
+        @review = Review.find(params[:id])
         render json: @review
     end
 
-
-    # def bulkcreate
-
-    #     # for each SP obj in API, persist to DB:
-    #     # ADD DURATION & ORDER #
-    #     @seqPoses = params["_json"]
-    #     @seqPoses.each do | sp |
-    #         newsp = Review.new
-    #         newsp.sequence_id =  sp["sequence_id"]
-    #         newsp.pose_id =  sp["pose_id"]
-    #         newsp.order_no = sp["order_no"]
-    #         newsp.duration = sp["duration"]
-    #         newsp.save
-    #     end
-
-    #     @seqId = @seqPoses[0]["sequence_id"].to_i
-    #     #@seq = Review.find_by(@seqId)
-    #     @seq = Review.all.find_all{ |sp|
-    #         sp.sequence_id == @seqId
-    #     }
-    #     render json: @seq
-    #     # render json for just the one sequence
-    # end
-
-
-    # def seqposes
-    #     # @seq = Review.find(params[:id])
-    #     # @seq_id = @seq.sequence_id
-
-    #     @seq = (params[:id]).to_i
-    #     @poses_for_seq = Review.all.find_all{ |ea|
-    #     ea.sequence_id == @seq
-    #     }
-
-    #     render json: @poses_for_seq
-    # end
-
+    def destroy
+        Review.find(params[:id]).destroy
+        render json: @reviews
+    end
 
 end
