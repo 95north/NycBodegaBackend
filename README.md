@@ -1,24 +1,10 @@
-# README
+# Demo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Try out the API endpoints for yourself at: https://nyc-bodega-backend.herokuapp.com/
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Built With
+	•	Ruby on Rails
+  •	Serializer Gem (Ruby, to restrict data fields returned in HTTP response to the front-end)
+ 	•	Sqlite3 database
+ 	
+  
